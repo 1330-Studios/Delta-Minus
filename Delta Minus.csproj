@@ -8,6 +8,7 @@
         <ApplicationIcon>Assets\DeltaMinus.ico</ApplicationIcon>
         <Company>1330 Studios LLC</Company>
         <Authors>KosmicDev</Authors>
+        <Copyright>1330 Studios LLC</Copyright>
     </PropertyGroup>
 
     <ItemGroup>
