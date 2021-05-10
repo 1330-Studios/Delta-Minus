@@ -8,3 +8,5 @@ riderModule.iml
 /libsteam_api.bundle
 /libsteam_api.so
 /steam_api.dll
+.vs/
+.idea/
