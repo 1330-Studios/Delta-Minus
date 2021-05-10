@@ -1,0 +1,10 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+/steam_api64.dll
+/steam_api64.lib
+/libsteam_api.bundle
+/libsteam_api.so
+/steam_api.dll
