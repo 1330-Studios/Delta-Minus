@@ -8,20 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="491f8e5d-feb7-4e97-a8a7-3533fba9166f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Delta Minus/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Delta Minus/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Delta Minus/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Delta Minus/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Delta Minus/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/DeltaMinus.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Delta Minus.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Delta Minus.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Gui/App.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Gui/K_OpenDialog.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Util/ColorAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Util/Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Delta Minus/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Delta Minus/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +102,7 @@
       <workItem from="1620628924445" duration="6905000" />
       <workItem from="1620636207194" duration="7602000" />
       <workItem from="1620644440282" duration="437000" />
-      <workItem from="1620644976448" duration="901000" />
+      <workItem from="1620644976448" duration="1407000" />
     </task>
     <servers />
   </component>
