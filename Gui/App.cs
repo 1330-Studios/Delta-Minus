@@ -98,7 +98,9 @@ namespace Delta_Minus.Gui {
                     new MenuItem("Open Folder".makeMarked(), ": Open BTD6 folder", () => (SteamApps.AppInstallDir(getGameId())+@"\Mods").openFolder(), shortcut: Key.CtrlMask | Key.O)
                 }),
                 new MenuBarItem("About", new [] {
-                    new MenuItem("Kosmic", "", () => "https://www.youtube.com/channel/UC-KLFF8V6UMglSGrKBhELiA".openLink()),
+                    new MenuItem("Kosmic", "", () => "https://github.com/KosmicShovel".openLink()),
+                    null,
+                    new MenuItem("1330 Studios", "", () => "https://github.com/1330-Studios".openLink()),
                     null,
                     new MenuItem("Discord Server", "", () => "http://discord.1330studios.com/".openLink())
                 })
