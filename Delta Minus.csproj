@@ -6,6 +6,8 @@
         <RootNamespace>Delta_Minus</RootNamespace>
         <LangVersion>preview</LangVersion>
         <ApplicationIcon>Assets\DeltaMinus.ico</ApplicationIcon>
+        <Company>1330 Studios LLC</Company>
+        <Authors>KosmicDev</Authors>
     </PropertyGroup>
 
     <ItemGroup>
