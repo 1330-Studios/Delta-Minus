@@ -93,7 +93,8 @@ namespace Delta_Minus.Gui {
                                     break;
                             }
 
-                        resetMods();
+                        Application.Shutdown();
+                        Application.Run<App>();
                     }, shortcut: Key.CtrlMask | Key.A),
                     new MenuItem("Open Folder".makeMarked(), ": Open BTD6 folder", () => (SteamApps.AppInstallDir(getGameId())+@"\Mods").openFolder(), shortcut: Key.CtrlMask | Key.O)
                 }),
