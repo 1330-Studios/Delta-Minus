@@ -5,7 +5,7 @@ using System.Text;
 namespace Delta_Minus.Util {
     public static class Extensions {
         public static string makeMarked(this string original) {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             foreach (var carr in original.ToCharArray()) sb.Append("_" + carr);
             return sb.ToString();
         }
@@ -31,7 +31,7 @@ namespace Delta_Minus.Util {
                 }
             }
         }
-        
+
         public static void openFolder(this string uri) {
             try {
                 Process.Start(uri);
