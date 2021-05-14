@@ -11,6 +11,10 @@
         <RuntimeIdentifier>win-x64</RuntimeIdentifier>
         <IsPackable>false</IsPackable>
         <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+        <PackageVersion>1.1.0</PackageVersion>
+        <Version>1.1.0</Version>
+        <FileVersion>1.1.0</FileVersion>
+        <NeutralLanguage>en-US</NeutralLanguage>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -20,10 +24,11 @@
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
       <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
       <PlatformTarget>x64</PlatformTarget>
+      <DebugType>none</DebugType>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Include="bin\Release\netcoreapp3.1\steam_api64.dll" />
+      <None Include="include\steam_api64.dll" />
     </ItemGroup>
 
     <ItemGroup>

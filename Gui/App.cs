@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Loader;
+using System.Text.Json;
 using System.Threading;
 using Delta_Minus.Util;
 using SharpCompress.Archives;
@@ -151,8 +154,21 @@ namespace Delta_Minus.Gui {
             windowCreation();
             addMenuBar();
             var files = Directory.GetFiles(SteamApps.AppInstallDir(getGameId()) + @"\Mods");
+            var alc = new AssemblyLoadContext("Temporary Context resetMods", true);
+            var ML = alc.LoadFromAssemblyPath(SteamApps.AppInstallDir() + @"\MelonLoader\MelonLoader.dll");
             for (var i = 0; i < files.Length; i++) {
-                var l = new Label(1, i + 3, Path.GetFileName(files[i]));
+                var l = new Label();
+                try {
+                    var asm = alc.LoadFromAssemblyPath(files[i]);
+                    var mia = asm.CustomAttributes.First(a => a.AttributeType.Assembly.Equals(ML) && a.AttributeType.FullName.Equals("MelonLoader.MelonInfoAttribute"));
+                    var name = mia.ConstructorArguments[1].Value.ToString().Trim();
+                    var version = mia.ConstructorArguments[2].Value.ToString().Replace("v", "");
+                    l = new Label(2, i + 3, $"{name}, v{version}");
+                } catch {
+                    //Usually when mod is built for previous MelonLoader versions than the one you have
+                    l = new Label(2, i + 3, $"{Path.GetFileNameWithoutExtension(files[i])}, v?.?");
+                }
+
                 l.ColorScheme = new();
                 l.ColorScheme.Normal = ColorAttributes.Current.modColor;
                 var filePath = files[i];
@@ -168,6 +184,7 @@ namespace Delta_Minus.Gui {
                 };
                 _top.Add(l);
             }
+            alc.Unload();
         }
 
         private void SetColor(byte col) {
