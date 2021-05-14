@@ -1,10 +1,10 @@
 <h1 align="center">Delta Minus Docs<h1/>
 <h2 align="center">Setup Guide<h2/>
 <h3>
-
-1. Download the application for your [.NET version](https://stackoverflow.com/a/42309484/12427280) from [our releases](https://github.com/1330-Studios/Delta-Minus/releases)
-2. Make sure Steam is open
-3. Run the application
+1. Download the application for your 
+<a href="https://stackoverflow.com/a/42309484/12427280">.NET version</a> from <a href="https://github.com/1330-Studios/Delta-Minus/releases">our releases</a><br/>
+2. Make sure Steam is open<br/>
+3. Run the application<br/>
 
 <h3 align="center">It's that simple.<h3/>
 <br/>
