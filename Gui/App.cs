@@ -11,6 +11,7 @@ using SharpCompress.Archives.SevenZip;
 using SharpCompress.Archives.Zip;
 using Steamworks;
 using Terminal.Gui;
+using Terminal.Gui.Graphs;
 
 namespace Delta_Minus.Gui {
     public class App : Toplevel {
@@ -20,8 +21,10 @@ namespace Delta_Minus.Gui {
         public App() {
             Console.Title = "Delta Minus";
             Driver.SetAttribute(ColorScheme.Focus);
+            ColorAttributes.SetColor(Program.prefs.theme);
             Application.Init();
             Application.UseSystemConsole = true;
+            AutoSize = true;
             _top = Application.Top;
             _top.ColorScheme.Normal = ColorAttributes.Current.baseColor;
             _top.ColorScheme.Focus = ColorAttributes.Current.baseColor;
@@ -50,7 +53,7 @@ namespace Delta_Minus.Gui {
             var version = new Label($"Version: {Assembly.GetCallingAssembly().GetName().Version.ToString(3)}");
             version.ColorScheme = new();
             version.ColorScheme.Normal = ColorAttributes.Current.versionColor;
-            _top.LayoutComplete += delegate {
+            Application.Resized += delegate {
                 version.X = Pos.Right(window) - 15;
                 version.Y = Pos.Top(window);
             };
@@ -112,8 +115,7 @@ namespace Delta_Minus.Gui {
                                     break;
                             }
 
-                        Application.Shutdown();
-                        Application.Run<App>();
+                        Reset();
                     }, shortcut: Key.CtrlMask | Key.A),
                     new MenuItem("Open Folder".makeMarked(), ": Open BTD6 folder",
                         () => (SteamApps.AppInstallDir(getGameId()) + @"\Mods").openFolder(),
@@ -125,7 +127,12 @@ namespace Delta_Minus.Gui {
                         new MenuItem("Windows 98", "", () => SetColor(2)),
                         new MenuItem("Pure White", "", () => SetColor(3)),
                         new MenuItem("Monochrome", "", () => SetColor(4)),
-                        new MenuItem("Caramel Apple", "", () => SetColor(5))
+                        new MenuItem("Light", "", () => SetColor(5)),
+                        new MenuItem("Caramel Apple", "", () => SetColor(6)),
+                        new MenuItem("Orange", "", () => SetColor(7)),
+                        new MenuItem("Silentstorm™", "", () => SetColor(8)),
+                        new MenuItem("Water and Lightning", "", () => SetColor(9)),
+                        new MenuItem("No More Eyes", "", () => SetColor(10)),
                     })
                 }),
                 new MenuBarItem("About", new[] {
@@ -157,17 +164,20 @@ namespace Delta_Minus.Gui {
                         Thread.Sleep(250);
                     }
 
-                    Application.Shutdown();
-                    Application.Run<App>();
+                    Reset();
                 };
                 _top.Add(l);
             }
         }
 
-        private void SetColor(int col) {
+        private void SetColor(byte col) {
             Program.prefs.theme = col;
-            Program.prefs.Save();
             ColorAttributes.SetColor(col);
+            Reset();
+        }
+
+        private void Reset() {
+            Program.prefs.Save();
             Application.Shutdown();
             Application.Run<App>();
         }

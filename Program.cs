@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.Loader;
 using System.Text.Json;
@@ -20,9 +21,7 @@ namespace Delta_Minus {
             SteamClient.Init(960090);
             Checks();
             Application.Run<App>();
-            ColorAttributes.SetColor(prefs.theme);
-            
-            //console height save here
+            prefs.Save();
         }
 
         private static void Checks() {
