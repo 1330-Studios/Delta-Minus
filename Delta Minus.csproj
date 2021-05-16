@@ -8,7 +8,6 @@
         <Company>1330 Studios LLC</Company>
         <Authors>KosmicDev</Authors>
         <Copyright>1330 Studios LLC</Copyright>
-        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
         <IsPackable>false</IsPackable>
         <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
         <PackageVersion>1.1.0</PackageVersion>
@@ -19,12 +18,14 @@
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
       <PlatformTarget>x64</PlatformTarget>
+        <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
       <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
       <PlatformTarget>x64</PlatformTarget>
       <DebugType>none</DebugType>
+        <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     </PropertyGroup>
 
     <ItemGroup>
