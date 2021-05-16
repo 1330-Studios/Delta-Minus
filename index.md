@@ -13,7 +13,7 @@
 <h1 align="center">How to use Delta Minus<h3/>
 
 <h2 align="center">Adding Mods<h3/>
-You are able to add mods by clicking on "BTD6" on the menu bar or by pressing CRTL + A. You will then be greeted by this menu.
+You are able to add mods by clicking on "BTD6" on the menu bar then "Add" or by pressing CRTL + A. You will then be greeted by this menu.
 <img src="images/addMod.png" align="center">
 All you need to do then is double click a mod and it will be added to your mods list and will be ran on the game starting!
 
