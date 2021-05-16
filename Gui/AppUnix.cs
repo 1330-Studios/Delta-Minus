@@ -15,7 +15,6 @@ namespace Delta_Minus.Gui {
         private readonly Toplevel _top;
 
         public AppUnix() {
-            Console.WriteLine("Initializing...");
             Console.Title = "Delta Minus";
             Driver.SetAttribute(ColorScheme.Focus);
             ColorAttributes.SetColor(Program.prefs.theme);
@@ -70,7 +69,9 @@ namespace Delta_Minus.Gui {
                         new MenuItem("Silentstorm™", "", () => SetColor(8)),
                         new MenuItem("Water and Lightning", "", () => SetColor(9)),
                         new MenuItem("No More Eyes", "", () => SetColor(10)),
-                    })
+                    }),
+                    null,
+                    new MenuItem("Exit", "", () => Environment.Exit(0), shortcut: Key.CtrlMask | Key.C)
                 }),
                 new MenuBarItem("About", new[] {
                     new MenuItem("Kosmic", "", () => "https://github.com/KosmicShovel".openLink()),
