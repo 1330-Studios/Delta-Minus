@@ -44,7 +44,7 @@ namespace Delta_Minus.Gui {
         }
 
         private void windowCreation() {
-            var window = new Window("Delta Minus") {
+            var window = new Window($"Delta Minus ─── {PlatformHelper.current().PlatformName}") {
                 X = 0,
                 Y = 1,
                 Width = Dim.Fill(),
@@ -77,7 +77,7 @@ namespace Delta_Minus.Gui {
                                     getGamesEXEName(getGameId()), "--no-mods")
                         }.Start(), shortcut: Key.CtrlMask | Key.ShiftMask | Key.L),
                     null,
-                    new MenuItem("Add".makeMarked(), ": Adds a mod", () => {
+                    new MenuItem("Add Mod".makeMarked(), ": Adds a mod", () => {
                         var openDialog = new OpenDialog("Select Mod", "Select a DLL, ZIP, 7z, or RAR");
                         
                         openDialog.ColorScheme.Normal = ColorAttributes.Current.addModColor;
