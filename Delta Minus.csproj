@@ -35,7 +35,7 @@
     <ItemGroup>
       <PackageReference Include="Facepunch.Steamworks" Version="2.3.3" />
       <PackageReference Include="SharpCompress" Version="0.28.2" />
-      <PackageReference Include="Terminal.Gui" Version="1.0.0" />
+      <PackageReference Include="Terminal.Gui" Version="1.1.1" />
     </ItemGroup>
 
     <ItemGroup>
