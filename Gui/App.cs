@@ -35,7 +35,7 @@ namespace Delta_Minus.Gui {
                 resetMods();
             }
             else {
-                MessageBox.ErrorQuery("Can't find MelonLoader v0.3.0", "MelonLoader v0.3.0 can not be detected. Either install it or update it.", "Ok");
+                MessageBox.ErrorQuery("Can't find MelonLoader v0.4.0", "MelonLoader v0.4.0 can not be detected. Either install it or update to it.", "Ok");
                 "https://github.com/LavaGang/MelonLoader.Installer/releases".openLink();
                 Environment.Exit(0);
             }
