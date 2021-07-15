@@ -34,7 +34,7 @@ namespace Delta_Minus {
 
         private static void Checks() {
             var alc = new AssemblyLoadContext("Temporary Context", true);
-            if (!File.Exists(SteamApps.AppInstallDir() + @"\version.dll") || alc.LoadFromAssemblyPath(SteamApps.AppInstallDir() + @"\MelonLoader\MelonLoader.dll").GetName().Version.Minor < 3)
+            if (!File.Exists(SteamApps.AppInstallDir() + @"\version.dll") || alc.LoadFromAssemblyPath(SteamApps.AppInstallDir() + @"\MelonLoader\MelonLoader.dll").GetName().Version.Minor < 4)
                 App.MLinstalled = false;
             alc.Unload();
         }
