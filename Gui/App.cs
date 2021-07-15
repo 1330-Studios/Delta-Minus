@@ -201,11 +201,9 @@ namespace Delta_Minus.Gui {
 
 
         private uint getGameId() =>
-            //TODO other game support
             960090;
 
         private string getGamesEXEName(uint game) =>
-            //TODO other game support
             "BloonsTD6.exe";
     }
 }
