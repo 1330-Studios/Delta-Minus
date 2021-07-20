@@ -9,11 +9,14 @@
         <Authors>KosmicDev</Authors>
         <Copyright>1330 Studios LLC</Copyright>
         <IsPackable>false</IsPackable>
-        <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
+        <TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
         <PackageVersion>1.1.0</PackageVersion>
         <Version>1.1.0</Version>
         <FileVersion>1.1.0</FileVersion>
         <NeutralLanguage>en-US</NeutralLanguage>
+        <TargetFramework>net5.0-windows</TargetFramework>
+        <StartupObject>Delta_Minus.Program</StartupObject>
+        <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -27,6 +30,11 @@
       <DebugType>none</DebugType>
         <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove=".gitignore" />
+      <None Remove="LICENSE" />
+    </ItemGroup>
 
     <ItemGroup>
       <None Include="include\steam_api64.dll" />
