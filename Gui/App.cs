@@ -36,7 +36,7 @@ namespace Delta_Minus.Gui {
                 resetMods();
             }
             else {
-                _ = MessageBox.ErrorQuery("Can't find MelonLoader v0.3.0", "MelonLoader v0.3.0 can not be detected. Either install it or update it.", "Ok");
+                _ = MessageBox.ErrorQuery("Can't find MelonLoader v0.4.0", "MelonLoader v0.4.0 can not be detected. Either install it or update it.", "Ok");
                 "https://github.com/LavaGang/MelonLoader.Installer/releases".openLink();
                 Environment.Exit(0);
             }
@@ -213,12 +213,9 @@ namespace Delta_Minus.Gui {
 
 
         private uint getGameId() =>
-            //TODO other game support
             960090;
 
         private string getGamesEXEName(uint game) =>
-
-
             //TODO other game support
             "BloonsTD6.exe";
     }
