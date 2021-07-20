@@ -2,70 +2,70 @@
 
 namespace Delta_Minus.Util {
     public class ColorAttributes {
-        public static ColorAttributes Dark = new ColorAttributes() {
+        public static readonly ColorAttributes Dark = new() {
             baseColor = Attribute.Make(Color.Green, Color.Black),
             versionColor = Attribute.Make(Color.Red, Color.Black),
             modColor = Attribute.Make(Color.Cyan, Color.Black),
             addModColor = Attribute.Make(Color.DarkGray, Color.Black),
             addModColor2 = Attribute.Make(Color.Red, Color.DarkGray)
         };
-        public static ColorAttributes Win98 = new ColorAttributes() {
+        public static readonly ColorAttributes Win98 = new() {
             baseColor = Attribute.Make(Color.White, Color.Blue),
             versionColor = Attribute.Make(Color.Gray, Color.Blue),
             modColor = Attribute.Make(Color.Gray, Color.Blue),
             addModColor = Attribute.Make(Color.Black, Color.Cyan),
             addModColor2 = Attribute.Make(Color.Gray, Color.Blue)
         };
-        public static ColorAttributes PureWhite = new ColorAttributes() {
+        public static readonly ColorAttributes PureWhite = new() {
             baseColor = Attribute.Make(Color.BrightYellow, Color.White),
             versionColor = Attribute.Make(Color.BrightYellow, Color.White),
             modColor = Attribute.Make(Color.BrightYellow, Color.White),
             addModColor = Attribute.Make(Color.BrightYellow, Color.White),
             addModColor2 = Attribute.Make(Color.BrightYellow, Color.White)
         };
-        public static ColorAttributes Mono = new ColorAttributes() {
+        public static readonly ColorAttributes Mono = new() {
             baseColor = Attribute.Make(Color.White, Color.Black),
             versionColor = Attribute.Make(Color.White, Color.Black),
             modColor = Attribute.Make(Color.White, Color.Black),
             addModColor = Attribute.Make(Color.White, Color.Black),
             addModColor2 = Attribute.Make(Color.White, Color.Black)
         };
-        public static ColorAttributes Light = new ColorAttributes() {
+        public static readonly ColorAttributes Light = new() {
             baseColor = Attribute.Make(Color.Green, Color.White),
             versionColor = Attribute.Make(Color.Red, Color.White),
             modColor = Attribute.Make(Color.Cyan, Color.White),
             addModColor = Attribute.Make(Color.DarkGray, Color.White),
             addModColor2 = Attribute.Make(Color.Red, Color.Gray)
         };
-        public static ColorAttributes Caramel = new ColorAttributes() {
+        public static readonly ColorAttributes Caramel = new() {
             baseColor = Attribute.Make(Color.Brown, Color.Red),
             versionColor = Attribute.Make(Color.Brown, Color.Red),
             modColor = Attribute.Make(Color.Brown, Color.Red),
             addModColor = Attribute.Make(Color.Brown, Color.Red),
             addModColor2 = Attribute.Make(Color.Brown, Color.BrightRed)
         };
-        public static ColorAttributes Orange = new ColorAttributes() {
+        public static readonly ColorAttributes Orange = new() {
             baseColor = Attribute.Make(Color.Red, Color.Brown),
             versionColor = Attribute.Make(Color.Red, Color.Brown),
             modColor = Attribute.Make(Color.Red, Color.Brown),
             addModColor = Attribute.Make(Color.Red, Color.Brown),
             addModColor2 = Attribute.Make(Color.Red, Color.Brown)
         };
-        public static ColorAttributes SilentStorm = new ColorAttributes() {
+        public static readonly ColorAttributes SilentStorm = new() {
             baseColor = Attribute.Make(Color.BrightRed, Color.Magenta),
             versionColor = Attribute.Make(Color.BrightRed, Color.Magenta),
             modColor = Attribute.Make(Color.BrightRed, Color.Magenta),
             addModColor = Attribute.Make(Color.BrightRed, Color.Magenta),
             addModColor2 = Attribute.Make(Color.BrightRed, Color.Magenta)
         };
-        public static ColorAttributes WaterAndLightning = new ColorAttributes() {
+        public static readonly ColorAttributes WaterAndLightning = new() {
             baseColor = Attribute.Make(Color.Blue, Color.BrightYellow),
             versionColor = Attribute.Make(Color.Blue, Color.BrightYellow),
             modColor = Attribute.Make(Color.Blue, Color.BrightYellow),
             addModColor = Attribute.Make(Color.Blue, Color.BrightYellow),
             addModColor2 = Attribute.Make(Color.Blue, Color.BrightYellow)
         };
-        public static ColorAttributes NoMoreEyes = new ColorAttributes() {
+        public static readonly ColorAttributes NoMoreEyes = new() {
             baseColor = Attribute.Make(Color.BrightRed, Color.Brown),
             versionColor = Attribute.Make(Color.BrightMagenta, Color.BrightGreen),
             modColor = Attribute.Make(Color.BrightYellow, Color.BrightRed),

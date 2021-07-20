@@ -11,15 +11,15 @@ using SharpCompress.Archives.Zip;
 using Terminal.Gui;
 
 namespace Delta_Minus.Gui {
-    public class AppUnix : Toplevel {
+    public class AppUnix : Toplevel, IApp {
         private readonly Toplevel _top;
 
         public AppUnix() {
-            Console.Title = "Delta Minus";
-            Driver.SetAttribute(ColorScheme.Focus);
-            ColorAttributes.SetColor(Program.prefs.theme);
             Application.Init();
             Application.UseSystemConsole = true;
+            Console.Title = "Delta Minus";
+            Driver.SetAttribute(ColorScheme.Focus);
+            ColorAttributes.SetColor(Program.prefs.Theme);
             AutoSize = true;
             _top = Application.Top;
             _top.ColorScheme.Normal = ColorAttributes.Current.baseColor;
@@ -156,7 +156,7 @@ namespace Delta_Minus.Gui {
         }
 
         private void SetColor(byte col) {
-            Program.prefs.theme = col;
+            Program.prefs.Theme = col;
             ColorAttributes.SetColor(col);
             Reset();
         }
@@ -164,7 +164,13 @@ namespace Delta_Minus.Gui {
         private void Reset() {
             Program.prefs.Save();
             Application.Shutdown();
-            Application.Run<AppUnix>();
+            Program.app = null;
+            Console.ResetColor();
+            Console.Clear();
+            var app = AppDomain.CurrentDomain.FriendlyName;
+            Process cmd = new() { StartInfo = new(app) };
+            cmd.Start();
+            Environment.Exit(0);
         }
     }
 }

@@ -1,35 +1,28 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
+﻿using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.Loader;
-using System.Text.Json;
-using Delta_Minus.Assets;
 using Delta_Minus.Gui;
 using Delta_Minus.Util;
 using Steamworks;
-using Terminal.Gui;
 
 namespace Delta_Minus {
     internal class Program {
-        public static Preferences prefs = new(){theme = 1, BTD6InstallLocation = "CHANGE"};
+        public static Preferences prefs = new() { Theme = 1, BTD6InstallLocation = "CHANGE" };
+        public static IApp app;
+
         public static void Main() {
             if (!prefs.Exists())
                 prefs.Save();
             prefs.Load();
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
-                if (!File.Exists("steam_api64.dll"))
-                    File.WriteAllBytes("steam_api64.dll", NativeResources.steam_api64);
+                SteamAPI.Init();
                 SteamClient.Init(960090);
                 Checks();
-                Application.Run<App>();
+                app = new App();
             }
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) || RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                Application.Run<AppUnix>();
-
-            prefs.Save();
+                app = new AppUnix();
         }
 
         private static void Checks() {

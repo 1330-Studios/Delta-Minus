@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.Json;
 
 namespace Delta_Minus.Util {
     
     public class Preferences {
-        public byte theme { get; set; }
+        public byte Theme { get; set; }
         public string BTD6InstallLocation { get; set; }
-        private static readonly string fileLocation = "options.dat";
+        public static readonly string dir = Environment.ExpandEnvironmentVariables("%AppData%\\DeltaMinus");
+        private static readonly string fileLocation = Environment.ExpandEnvironmentVariables("%AppData%\\DeltaMinus\\options.dat");
 
         #region key
 
@@ -19,13 +19,14 @@ namespace Delta_Minus.Util {
         #endregion
         
         public void Save() {
+            _ = Directory.CreateDirectory(dir);
             using var fs = File.Create(fileLocation);
-            var rfc = new Rfc2898DeriveBytes(UnicodeEncoding.Default.GetString(key), new byte[] {0x48, 0x89, 0x23, 0x77, 0x45, 0x57, 0x58, 0x14, 0x22, 0x64});
-            Aes aes = new AesManaged();
+            var rfc = new Rfc2898DeriveBytes(Encoding.Default.GetString(key), new byte[] {0x48, 0x89, 0x23, 0x77, 0x45, 0x57, 0x58, 0x14, 0x22, 0x64});
+            using Aes aes = Aes.Create();
             aes.Key = rfc.GetBytes(aes.KeySize / 8);
             aes.IV = rfc.GetBytes(aes.BlockSize / 8);
             using var cs = new CryptoStream(fs, aes.CreateEncryptor(), CryptoStreamMode.Write);
-            cs.WriteByte(theme);
+            cs.WriteByte(Theme);
             using var sw = new StreamWriter(cs, Encoding.UTF8);
             sw.Write(BTD6InstallLocation);
         }
@@ -33,13 +34,13 @@ namespace Delta_Minus.Util {
         public void Load() {
             var bytes = new byte[1];
             using var fs = File.Open(fileLocation, FileMode.Open);
-            var rfc = new Rfc2898DeriveBytes(UnicodeEncoding.Default.GetString(key), new byte[] {0x48, 0x89, 0x23, 0x77, 0x45, 0x57, 0x58, 0x14, 0x22, 0x64});
-            Aes aes = new AesManaged();
+            var rfc = new Rfc2898DeriveBytes(Encoding.Default.GetString(key), new byte[] {0x48, 0x89, 0x23, 0x77, 0x45, 0x57, 0x58, 0x14, 0x22, 0x64});
+            using Aes aes = Aes.Create();
             aes.Key = rfc.GetBytes(aes.KeySize / 8);
             aes.IV = rfc.GetBytes(aes.BlockSize / 8);
             using var cs = new CryptoStream(fs, aes.CreateDecryptor(), CryptoStreamMode.Read);
             cs.Read(bytes, 0, bytes.Length);
-            Program.prefs.theme = bytes[0];
+            Program.prefs.Theme = bytes[0];
             using var sr = new StreamReader(cs, Encoding.UTF8);
             var sb = new StringBuilder();
             while (sr.Peek() >= 0) sb.Append((char)((byte)sr.Read()));

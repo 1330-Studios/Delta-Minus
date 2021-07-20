@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -17,16 +18,16 @@ using Terminal.Gui;
 using Terminal.Gui.Graphs;
 
 namespace Delta_Minus.Gui {
-    public class App : Toplevel {
+    public class App : Toplevel, IApp {
         public static bool MLinstalled = true;
         private readonly Toplevel _top;
 
         public App() {
-            Console.Title = "Delta Minus";
-            Driver.SetAttribute(ColorScheme.Focus);
-            ColorAttributes.SetColor(Program.prefs.theme);
             Application.Init();
             Application.UseSystemConsole = true;
+            Console.Title = "Delta Minus";
+            Driver.SetAttribute(ColorScheme.Focus);
+            ColorAttributes.SetColor(Program.prefs.Theme);
             AutoSize = true;
             _top = Application.Top;
             _top.ColorScheme.Normal = ColorAttributes.Current.baseColor;
@@ -35,11 +36,14 @@ namespace Delta_Minus.Gui {
                 resetMods();
             }
             else {
-                MessageBox.ErrorQuery("Can't find MelonLoader v0.3.0", "MelonLoader v0.3.0 can not be detected. Either install it or update it.", "Ok");
+                _ = MessageBox.ErrorQuery("Can't find MelonLoader v0.3.0", "MelonLoader v0.3.0 can not be detected. Either install it or update it.", "Ok");
                 "https://github.com/LavaGang/MelonLoader.Installer/releases".openLink();
                 Environment.Exit(0);
             }
-
+            if (!SteamAPI.Loaded) {
+                _ = MessageBox.ErrorQuery("Can't load the Steam API. Please create a support ticket in our discord for further assistance.", "Ok");
+                Environment.Exit(0);
+            }
             Application.Run();
         }
 
@@ -53,9 +57,11 @@ namespace Delta_Minus.Gui {
             window.ColorScheme.Focus = window.ColorScheme.Normal;
             window.ColorScheme.HotFocus = window.ColorScheme.Normal;
             _top.Add(window);
-            var version = new Label($"Version: {Assembly.GetCallingAssembly().GetName().Version.ToString(3)}");
-            version.ColorScheme = new();
-            version.ColorScheme.Normal = ColorAttributes.Current.versionColor;
+            var version = new Label($"Version: {Assembly.GetCallingAssembly().GetName().Version.ToString(3)}") {
+                ColorScheme = new() {
+                    Normal = ColorAttributes.Current.versionColor
+                }
+            };
             Application.Resized += delegate {
                 version.X = Pos.Right(window) - 15;
                 version.Y = Pos.Top(window);
@@ -188,7 +194,7 @@ namespace Delta_Minus.Gui {
         }
 
         private void SetColor(byte col) {
-            Program.prefs.theme = col;
+            Program.prefs.Theme = col;
             ColorAttributes.SetColor(col);
             Reset();
         }
@@ -196,7 +202,13 @@ namespace Delta_Minus.Gui {
         private void Reset() {
             Program.prefs.Save();
             Application.Shutdown();
-            Application.Run<App>();
+            Program.app = null;
+            Console.ResetColor();
+            Console.Clear();
+            var app = AppDomain.CurrentDomain.FriendlyName;
+            Process cmd = new() { StartInfo = new(app) };
+            cmd.Start();
+            Environment.Exit(0);
         }
 
 
@@ -205,6 +217,8 @@ namespace Delta_Minus.Gui {
             960090;
 
         private string getGamesEXEName(uint game) =>
+
+
             //TODO other game support
             "BloonsTD6.exe";
     }
