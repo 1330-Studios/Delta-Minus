@@ -3,4 +3,9 @@
   <PropertyGroup>
     <_LastSelectedProfileId>Z:\Delta Minus\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Assets\NativeResources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

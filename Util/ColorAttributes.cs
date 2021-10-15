@@ -1,10 +1,11 @@
-﻿using Terminal.Gui;
+﻿using Microsoft.Win32;
+using Terminal.Gui;
 
 namespace Delta_Minus.Util {
     public class ColorAttributes {
         public static readonly ColorAttributes Dark = new() {
             baseColor = Attribute.Make(Color.Green, Color.Black),
-            versionColor = Attribute.Make(Color.Red, Color.Black),
+            versionColor = Attribute.Make(Color.BrightCyan, Color.Black),
             modColor = Attribute.Make(Color.Cyan, Color.Black),
             addModColor = Attribute.Make(Color.DarkGray, Color.Black),
             addModColor2 = Attribute.Make(Color.Red, Color.DarkGray)
@@ -72,11 +73,27 @@ namespace Delta_Minus.Util {
             addModColor = Attribute.Make(Color.BrightGreen, Color.BrightMagenta),
             addModColor2 = Attribute.Make(Color.Brown, Color.BrightYellow)
         };
-        
+
         public static ColorAttributes Current = Dark;
 
         public static void SetColor(byte color) {
             switch (color) {
+                case 0:
+#if _WINDOWS
+#pragma warning disable CA1416
+                    RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
+                    object registryValueObject = key?.GetValue("AppsUseLightTheme");
+                    if (registryValueObject == null) {
+                        Current = Dark;
+                        break;
+                    }
+
+                    int registryValue = (int)registryValueObject;
+
+                    Current = registryValue > 0 ? Light : Dark;
+#pragma warning restore CA1416
+#endif
+                    break;
                 case 1:
                     Current = Dark;
                     break;
@@ -109,7 +126,7 @@ namespace Delta_Minus.Util {
                     break;
             }
         }
-        
+
         public Attribute baseColor;
         public Attribute addModColor2;
         public Attribute versionColor;

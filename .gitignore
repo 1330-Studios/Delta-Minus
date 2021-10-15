@@ -12,3 +12,5 @@ riderModule.iml
 .idea/
 Delta Minus.sln.DotSettings.user
 /Properties/PublishProfiles
+/Out
+/x64/Debug

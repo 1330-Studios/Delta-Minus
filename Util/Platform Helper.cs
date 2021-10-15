@@ -7,7 +7,7 @@ namespace Delta_Minus.Util {
         public static readonly Platform Windows = new() {id = 3, PlatformName = "Windows"};
         public static readonly Platform None = new() {id = -1, PlatformName = "NONE"};
 
-        public static OSPlatform convert(Platform platform) =>
+        public static OSPlatform Convert(Platform platform) =>
             platform.id switch {
                 1 => OSPlatform.Linux,
                 2 => OSPlatform.OSX,
@@ -22,7 +22,7 @@ namespace Delta_Minus.Util {
                 _ => PlatformHelper.None
             };
 
-        public static Platform current() {
+        public static Platform Current() {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) return Windows;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) return Linux;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) return OSX;

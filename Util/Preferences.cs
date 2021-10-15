@@ -7,10 +7,15 @@ using System.Text;
 namespace Delta_Minus.Util {
     
     public class Preferences {
+        internal bool badPrefs;
+        internal static Preferences defaultPrefs = new() { Theme = 0, Version = 2, Transparency = 1, BTD6InstallLocation = "CHANGE" };
+
         public byte Theme { get; set; }
+        public byte Version { get; set; }
+        public byte Transparency { get; set; }
         public string BTD6InstallLocation { get; set; }
-        public static readonly string dir = Environment.ExpandEnvironmentVariables("%AppData%\\DeltaMinus");
-        private static readonly string fileLocation = Environment.ExpandEnvironmentVariables("%AppData%\\DeltaMinus\\options.dat");
+        public static readonly string dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DeltaMinus");
+        private static readonly string fileLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DeltaMinus\\options.dat");
 
         #region key
 
@@ -27,6 +32,8 @@ namespace Delta_Minus.Util {
             aes.IV = rfc.GetBytes(aes.BlockSize / 8);
             using var cs = new CryptoStream(fs, aes.CreateEncryptor(), CryptoStreamMode.Write);
             cs.WriteByte(Theme);
+            cs.WriteByte(Version);
+            cs.WriteByte(Transparency);
             using var sw = new StreamWriter(cs, Encoding.UTF8);
             sw.Write(BTD6InstallLocation);
         }
@@ -41,11 +48,16 @@ namespace Delta_Minus.Util {
             using var cs = new CryptoStream(fs, aes.CreateDecryptor(), CryptoStreamMode.Read);
             cs.Read(bytes, 0, bytes.Length);
             Program.prefs.Theme = bytes[0];
+            cs.Read(bytes, 0, bytes.Length);
+            if (bytes[0] == 0x43 || bytes[0] != defaultPrefs.Version)
+                badPrefs = true;
+            Program.prefs.Version = bytes[0];
+            cs.Read(bytes, 0, bytes.Length);
+            Program.prefs.Transparency = bytes[0];
             using var sr = new StreamReader(cs, Encoding.UTF8);
             var sb = new StringBuilder();
             while (sr.Peek() >= 0) sb.Append((char)((byte)sr.Read()));
             BTD6InstallLocation = sb.ToString();
-            //File.WriteAllText("temp.txt", sb.ToString());
         }
 
         public bool Exists() => File.Exists(fileLocation);
